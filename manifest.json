@@ -1,12 +1,27 @@
 {
-  "background_color": "#060402",
-  "dir": "ltr",
-  "display": "standalone",
+  "lang": "tr",
   "name": "Gölge Diyarı",
-  "orientation": "any",
-  "scope": "/",
   "short_name": "GölgeDiyarı",
-  "start_url": "/",
+  "description": "Karanlık bir dünyada geçen Türkçe RPG oyunu",
+  "id": "golge-diyari",
+  "start_url": "/G-lge-Diyar-/",
+  "scope": "/G-lge-Diyar-/",
+  "background_color": "#060402",
   "theme_color": "#060402",
-  "description": "Karanlık bir dünyada geçen Türkçe RPG macera oyunu."
+  "display": "standalone",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/G-lge-Diyar-/golge-diyari-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/G-lge-Diyar-/golge-diyari-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }
