@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="mobile-web-app-capable" content="yes">
-<title>Gölge Diyarı</title><link rel="manifest" href="/G-lge-Diyar-/manifest.json">
+<title>Gölge Diyarı</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;}
@@ -3052,6 +3052,53 @@ function getHighScore(){
 // Otomatik kayıt: her dalga bitişinde
 const _origOnWaveClear = typeof onWaveClear==='function' ? onWaveClear : null;
 // startGame'de yükle, her 5 dalgada kaydet
+
+
+/* ══════════════════════════════════════
+   ADMOB REKLAM SİSTEMİ
+══════════════════════════════════════ */
+const ADMOB = {
+  appId: 'ca-app-pub-8396481878030412~9190817667',
+  interstitialId: 'ca-app-pub-8396481878030412/1156805580',
+  rewardedId: 'ca-app-pub-8396481878030412/3750766648',
+  
+  // Geçiş reklamı göster (her 5 dalgada)
+  showInterstitial: function(callback){
+    if(window.admob && window.admob.interstitial){
+      window.admob.interstitial.prepare({adUnitId: this.interstitialId})
+        .then(()=>window.admob.interstitial.show())
+        .then(()=>{ if(callback) callback(); })
+        .catch(()=>{ if(callback) callback(); });
+    } else {
+      // Test modu - AdMob SDK yok (HTML5 browser)
+      console.log('AdMob: Geçiş reklamı gösterildi (test)');
+      if(callback) callback();
+    }
+  },
+  
+  // Ödüllü reklam göster (2x altın)
+  showRewarded: function(callback){
+    if(window.admob && window.admob.rewarded){
+      window.admob.rewarded.prepare({adUnitId: this.rewardedId})
+        .then(()=>window.admob.rewarded.show())
+        .then((result)=>{
+          if(result && result.type === 'rewarded'){
+            G.gold += 100;
+            updateHUD();
+            showToast('🎁','Ödül Kazandın!','+100 Altın','#f0c840');
+          }
+          if(callback) callback();
+        })
+        .catch(()=>{ if(callback) callback(); });
+    } else {
+      // Test modu
+      G.gold += 100;
+      updateHUD();
+      showToast('🎁','Ödül Kazandın!','+100 Altın','#f0c840');
+      if(callback) callback();
+    }
+  }
+};
 
 function loop(){update();draw();requestAnimationFrame(loop);}
 updateHUD();show('ss');drawWheel(0);
