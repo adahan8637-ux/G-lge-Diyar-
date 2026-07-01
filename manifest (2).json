@@ -1,0 +1,13 @@
+{
+  "background_color": "#060402",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Gölge Diyarı",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "GölgeDiyarı",
+  "start_url": "/",
+  "theme_color": "#060402",
+  "description": "Karanlık bir dünyada geçen Türkçe RPG oyunu.",
+  "id": "gölge-diyarı"
+}
